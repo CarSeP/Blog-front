@@ -1,16 +1,14 @@
-import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HomePage } from "./pages/home";
 
 function App() {
-	const [data, setData] = useState("");
-	const fetchData = async () => {
-		const response = await fetch("http://localhost:3000");
-		const data = await response.text();
-		setData(data);
-	};
-	useEffect(() => {
-		fetchData();
-	}, []);
-	return <h1>{data}</h1>;
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+			</Routes>
+		</BrowserRouter>
+	);
 }
 
 export default App;
