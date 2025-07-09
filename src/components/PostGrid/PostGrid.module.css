@@ -1,0 +1,7 @@
+.PostGrid {
+	margin-top: 100px;
+	display: flex;
+	gap: 60px;
+	justify-content: center;
+	flex-wrap: wrap;
+}
