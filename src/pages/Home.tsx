@@ -1,3 +1,5 @@
+import { PostGridComponent } from "../components/PostGrid/PostGrid";
+
 export function HomePage() {
-	return <h1>Inicio</h1>
+	return <PostGridComponent />;
 }
