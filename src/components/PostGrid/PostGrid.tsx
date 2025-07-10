@@ -1,18 +1,28 @@
+"use client";
+
 import { useEffect, useState } from "react";
-import { PostComponent } from "../PostCard/PostCard";
-import type { Post } from "../../interfaces/post.interface";
 import style from "./PostGrid.module.css";
-import { prisma } from "../../services/prisma";
+import { Post } from "@/interfaces/post.interface";
+import { PostCard } from "../PostCard/PostCard";
 
-export  function PostGridComponent() {
-	const [posts, setPosts] = useState<Post[]>([]);
+export function PostGrid() {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const onFetch = async () => {
+    const response = await fetch("/api/posts");
+    const dataPost = await response.json();
 
-	const prismaPost: any =  prisma.post.findMany();
-	setPosts(prismaPost);
+    setPosts(dataPost);
+  };
 
-	return (
-		<section className={style.PostGrid}>
-			{posts && posts.map((post) => <PostComponent key={post.id} post={post} />)}
-		</section>
-	);
+  useEffect(() => {
+    onFetch();
+  }, []);
+
+  return (
+    <section className={style.PostGridContainer}>
+      <div className={style.PostGrid}>
+        {posts && posts.map((post) => <PostCard key={post.id} post={post} />)}
+      </div>
+    </section>
+  );
 }

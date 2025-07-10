@@ -8,9 +8,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model post {
-  id    Int     @id @default(autoincrement())
-  title String	@unique
-  slug String  @unique
-	description String
+model Post {
+  id          Int         @id @default(autoincrement())
+  title       String
+  slug        String      @unique
+  description String
+  categories  String[]
+  img         String
 }
