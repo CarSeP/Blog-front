@@ -8,4 +8,20 @@ body {
 
 * {
   box-sizing: border-box;
+  text-decoration: none;
+  color: black;
+}
+
+main {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  padding-bottom: 40px;
+  padding-top: 40px;
+}
+
+@media (max-width: 1000px) {
+  main {
+    padding-inline: 20px;
+  }
 }
