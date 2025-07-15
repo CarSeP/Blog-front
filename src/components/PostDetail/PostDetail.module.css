@@ -1,0 +1,36 @@
+.post {
+    width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid #D9D9D9;
+}
+
+.postHeader {
+    width: 100%;
+}
+
+.postImg {
+    width: 100%;
+    max-height: 400px;
+}
+
+.postContent {
+    padding: 20px;
+}
+
+.postCategoryContainer {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.postCategory {
+  background-color: #d1fae5;
+  padding: 5px 10px;
+  color: #065f46;
+  border-radius: 10px;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
