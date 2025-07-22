@@ -1,13 +1,13 @@
 .header {
-	background-color: white;
-	width: 100%;
-	border-bottom: 1px solid #d9d9d9;
-	padding: 10px;
+  background-color: white;
+  width: 100%;
+  border-bottom: 1px solid #d9d9d9;
+  padding: 10px;
 }
 
 .title {
-	margin: 0;
-	display: inline;
-	font-weight: bolder;
-	font-size: 40px;
+  margin: 0;
+  display: inline;
+  font-weight: bolder;
+  font-size: 40px;
 }
