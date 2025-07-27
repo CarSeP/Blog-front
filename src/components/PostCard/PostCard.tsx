@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Post } from "../../interfaces/post.interface";
 import style from "./PostCard.module.css";
+import PostCategories from "../PostCategories/PostCategories";
+import { formatDate } from "@/services/date";
 
 interface Props {
   post: Post;
@@ -11,22 +13,32 @@ export function PostCard({ post }: Props) {
     <article className={style.postCard}>
       <Link href={"post/" + post.slug}>
         <header className={style.postHeader}>
-          <img className={style.postImg} src={post.img}></img>
+          <img
+            className={style.postImg}
+            src={post.img || "/no-image.png"}
+          ></img>
         </header>
         <div className={style.postContent}>
           <div>
-            <div className={style.postCategoryContainer}>
-              {post.categories &&
-                post.categories.map((category, index) => {
-                  return (
-                    <span key={index} className={style.postCategory}>
-                      {category}
-                    </span>
-                  );
-                })}
-            </div>
-            <h3 className={style.postTitle}>{post.title}</h3>
+            <PostCategories categories={post.categories} />
+            <h2 className={style.postTitle} title={post.title}>
+              {post.title}
+            </h2>
             <span className={style.postDescription}>{post.description}</span>
+          </div>
+          <div className={style.postBody}>
+            <picture>
+              <img
+                className={style.postAuthorImg}
+                src={post.author.img || "/no-image.png"}
+              />
+            </picture>
+            <div className={style.postBodyInfo}>
+              <h3>
+                <b>{post.author.name}</b>
+              </h3>
+              <h3>{formatDate(post.createdAt)}</h3>
+            </div>
           </div>
         </div>
       </Link>

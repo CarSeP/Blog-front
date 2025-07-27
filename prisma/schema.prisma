@@ -9,10 +9,26 @@ datasource db {
 }
 
 model Post {
-  id          Int         @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   title       String
-  slug        String      @unique
+  slug        String   @unique
   description String
   categories  String[]
   img         String
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+}
+
+model User {
+  id          Int      @id @default(autoincrement())
+  name        String
+  username    String   @unique
+  categories  String[]
+  img         String
+  description String
+  posts       Post[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
 }

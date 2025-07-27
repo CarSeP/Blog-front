@@ -1,0 +1,12 @@
+.postCategoryContainer {
+  display: flex;
+  gap: 4px;
+}
+
+.postCategory {
+  background-color: #d1fae5;
+  padding: 5px 10px;
+  color: #065f46;
+  border-radius: 10px;
+  max-width: 100%;
+}
