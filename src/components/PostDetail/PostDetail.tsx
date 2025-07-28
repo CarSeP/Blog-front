@@ -1,24 +1,11 @@
-"use client";
-
 import { Post } from "@/interfaces/post.interface";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
 import style from "./PostDetail.module.css";
 
-function PostDetail() {
-  const slug = useParams().slug;
-  const [post, setPost] = useState<Post>();
-  const onFetch = async () => {
-    const response = await fetch(`/api/posts/${slug}`);
-    const dataPost = await response.json();
+interface Props {
+  post: Post;
+}
 
-    setPost(dataPost);
-  };
-
-  useEffect(() => {
-    onFetch();
-  }, []);
-
+function PostDetail({ post }: Props) {
   return (
     <section className={style.post}>
       <header className={style.postHeader}>
