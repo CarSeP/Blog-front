@@ -2,6 +2,7 @@ import { Post } from "@/interfaces/post.interface";
 import style from "./PostDetail.module.css";
 import PostCategories from "../PostCategories/PostCategories";
 import { formatDate } from "@/services/date";
+import Link from "next/link";
 
 interface Props {
   post: Post;
@@ -17,7 +18,7 @@ function PostDetail({ post }: Props) {
         <div className={style.postContainer}>
           <div className={style.postSubContainer}>
             <PostCategories categories={post.categories} />
-            <div className={style.postAuthorContainer}>
+            <Link href={"/profile/" + post.author.username} className={style.postAuthorContainer}>
               <img
                 className={style.postAuthorImg}
                 src={post.author.img || "/no-image.png"}
@@ -25,7 +26,7 @@ function PostDetail({ post }: Props) {
               <h3>
                 <b>{post.author.name}</b>
               </h3>
-            </div>
+            </Link>
           </div>
           <h3>{formatDate(post.createdAt)}</h3>
         </div>
