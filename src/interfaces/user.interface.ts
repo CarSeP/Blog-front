@@ -1,3 +1,5 @@
+import { Post } from "./post.interface";
+
 export interface User {
   id: number;
   name: string;
@@ -5,4 +7,5 @@ export interface User {
   categories: string[];
   img?: string;
   description?: string;
+  posts: Post[];
 }
