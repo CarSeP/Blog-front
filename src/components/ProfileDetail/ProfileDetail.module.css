@@ -1,17 +1,20 @@
-.profileCard {
+.profile {
   width: 100%;
-  border-radius: 15px;
   overflow: hidden;
-  border: 1px solid #d9d9d9;
-  padding: 20px;
-  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .profileHeader {
+  border-radius: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
   gap: 20px;
+  border: 1px solid #d9d9d9;
+  background-color: white;
 }
 
 .profileImg {
@@ -27,6 +30,6 @@
 }
 
 .profileCard p {
-    margin: 15px 0;
-    font-size: 20px;
+  margin: 15px 0;
+  font-size: 20px;
 }
