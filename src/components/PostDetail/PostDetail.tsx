@@ -1,7 +1,5 @@
 import { Post } from "@/interfaces/post.interface";
 import style from "./PostDetail.module.css";
-import PostCategories from "../PostCategories/PostCategories";
-import { formatDate } from "@/services/date";
 
 interface Props {
   post: Post;
@@ -14,20 +12,17 @@ function PostDetail({ post }: Props) {
         <img src={post?.img} className={style.postImg} />
       </header>
       <div className={style.postContent}>
-        <div className={style.postContainer}>
-          <div className={style.postSubContainer}>
-            <PostCategories categories={post.categories} />
-            <div className={style.postAuthorContainer}>
-              <img
-                className={style.postAuthorImg}
-                src={post.author.img || "/no-image.png"}
-              />
-              <h3>
-                <b>{post.author.name}</b>
-              </h3>
-            </div>
+        <div>
+          <div className={style.postCategoryContainer}>
+            {post?.categories &&
+              post.categories.map((category, index) => {
+                return (
+                  <span key={index} className={style.postCategory}>
+                    {category}
+                  </span>
+                );
+              })}
           </div>
-          <h3>{formatDate(post.createdAt)}</h3>
         </div>
         <h1 className={style.postTitle}>{post?.title}</h1>
         <p className={style.postDescription}> {post?.description}</p>
