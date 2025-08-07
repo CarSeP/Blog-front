@@ -1,0 +1,35 @@
+.profile {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profileHeader {
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+  border: 1px solid #d9d9d9;
+  background-color: white;
+}
+
+.profileImg {
+  height: 250px;
+  width: 250px;
+  border-radius: 100%;
+}
+
+.profileCard h2 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.profileCard p {
+  margin: 15px 0;
+  font-size: 20px;
+}
