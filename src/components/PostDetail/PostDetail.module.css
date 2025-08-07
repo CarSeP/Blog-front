@@ -1,36 +1,50 @@
 .post {
-    width: 100%;
-    border-radius: 15px;
-    overflow: hidden;
-    border: 1px solid #D9D9D9;
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid #d9d9d9;
 }
 
 .postHeader {
-    width: 100%;
+  width: 100%;
 }
 
 .postImg {
-    width: 100%;
-    max-height: 400px;
+  width: 100%;
+  max-height: 400px;
 }
 
 .postContent {
-    padding: 20px;
+  padding: 20px;
 }
 
-.postCategoryContainer {
+.postContainer {
   display: flex;
-  gap: 4px;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-.postCategory {
-  background-color: #d1fae5;
-  padding: 5px 10px;
-  color: #065f46;
-  border-radius: 10px;
-  max-width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.postSubContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.postAuthorImg {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+}
+
+.postAuthorContainer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.postContent h3 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: normal;
 }
