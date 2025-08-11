@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Post } from "../../interfaces/post.interface";
 import style from "./PostCard.module.css";
-import PostCategories from "../PostCategories/PostCategories";
+import Categories from "../Categories/Categories";
 import { formatDate } from "@/services/date";
 
 interface Props {
@@ -22,7 +22,7 @@ export function PostCard({ post }: Props) {
       <div className={style.postContent}>
         <div>
           <Link href={"post/" + post.slug}>
-            <PostCategories categories={post.categories} />
+            <Categories categories={post.categories} />
             <h2 className={style.postTitle} title={post.title}>
               {post.title}
             </h2>

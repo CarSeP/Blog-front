@@ -1,6 +1,6 @@
 import { Post } from "@/interfaces/post.interface";
 import style from "./PostDetail.module.css";
-import PostCategories from "../PostCategories/PostCategories";
+import Categories from "../Categories/Categories";
 import { formatDate } from "@/services/date";
 import Link from "next/link";
 
@@ -17,7 +17,7 @@ function PostDetail({ post }: Props) {
       <div className={style.postContent}>
         <div className={style.postContainer}>
           <div className={style.postSubContainer}>
-            <PostCategories categories={post.categories} />
+            <Categories categories={post.categories} />
             <Link href={"/profile/" + post.author.username} className={style.postAuthorContainer}>
               <img
                 className={style.postAuthorImg}
