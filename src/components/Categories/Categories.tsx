@@ -1,10 +1,10 @@
-import style from "./PostCategories.module.css";
+import style from "./Categories.module.css";
 
 interface Props {
   categories: string[];
 }
 
-function PostCategories({ categories }: Props) {
+function Categories({ categories }: Props) {
   return (
     <div className={style.postCategoryContainer}>
       {categories &&
@@ -19,4 +19,4 @@ function PostCategories({ categories }: Props) {
   );
 }
 
-export default PostCategories;
+export default Categories;
