@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Post } from "../../interfaces/post.interface";
 import style from "./PostCard.module.css";
 import Categories from "../Categories/Categories";
+import Image from "../ui/Image/Image";
 import { formatDate } from "@/services/date";
 
 interface Props {
@@ -12,11 +13,8 @@ export function PostCard({ post }: Props) {
   return (
     <article className={style.postCard}>
       <header className={style.postHeader}>
-        <Link href={"post/" + post.slug}>
-          <img
-            className={style.postImg}
-            src={post.img || "/no-image.png"}
-          ></img>
+        <Link href={"post/" + post.slug} className={style.postAuthorImgContainer}>
+          <Image className={style.postImg} src={post.img} />
         </Link>
       </header>
       <div className={style.postContent}>
@@ -31,10 +29,7 @@ export function PostCard({ post }: Props) {
         </div>
         <div className={style.postBody}>
           <picture>
-            <img
-              className={style.postAuthorImg}
-              src={post.author.img || "/no-image.png"}
-            />
+            <Image className={style.postAuthorImg} src={post.author.img} />
           </picture>
           <Link
             href={"/profile/" + post.author.username}
