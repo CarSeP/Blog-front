@@ -58,11 +58,11 @@ function Categories({ categories }: Props) {
   }, []);
 
   return (
-    <div ref={container} className={style.postCategoryContainer}>
+    <div ref={container} className={style.tagCategoryContainer}>
       {categories &&
         categories.map((category, index) => {
           return (
-            <span key={index} className={style.postCategory}>
+            <span key={index} className={style.tagCategory}>
               {category}
             </span>
           );
@@ -70,7 +70,7 @@ function Categories({ categories }: Props) {
       <span
         id="special-tag"
         ref={specialTag}
-        className={`${style.postCategory} ${style.hidden}`}
+        className={`${style.tagCategory} ${style.hidden}`}
       >
         +
       </span>
