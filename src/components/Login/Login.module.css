@@ -10,22 +10,23 @@
 }
 
 .title {
-    margin-bottom: 70px;
-    font-size: 35px;
+  margin-bottom: 70px;
+  font-size: 35px;
 }
 
-.buttonContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  input {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 2px solid #e3e3e3;
 
-    button {
-        padding: 10px;
-        cursor: pointer;
+    &:focus {
+      outline: none;
+      border-color: #00aae4;
     }
-}
-
-.link {
-    color: blue;
-    text-decoration: underline;
+  }
 }
