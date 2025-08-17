@@ -43,14 +43,14 @@ function Login() {
       </h1>
       <form className={style.loginForm}>
         <input
-          placeholder="Email"
+          placeholder="Correo electronico"
           name="email"
           type="email"
           required
           autoComplete="off"
         />
         <input
-          placeholder="Password"
+          placeholder="Contraseña"
           name="password"
           type="password"
           required
