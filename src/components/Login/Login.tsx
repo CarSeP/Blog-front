@@ -1,23 +1,20 @@
 "use client";
-import { useState } from "react";
 import style from "./Login.module.css";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useState } from "react";
 
 function Login() {
-  const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
 
     const body = {
       email: e.target.email.value,
-      password: "",
+      password: e.target.password.value,
     };
-
-    const passwordInput = e.target.password;
-
-    if (passwordInput) {
-      body.password = passwordInput.value;
-    }
 
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_SITE_URL}/auth/login`,
@@ -30,10 +27,13 @@ function Login() {
       }
     );
 
-    const data = await response.json();
+    if (response.status == 401) {
+      setErrorMessage(true);
+      return;
+    }
 
-    if (response.status === 200 && !data.register) {
-      setShowPassword(true);
+    if (response.status == 200) {
+      router.push("/");
     }
   };
   return (
@@ -49,16 +49,24 @@ function Login() {
           required
           autoComplete="off"
         />
-        {showPassword && (
-          <input
-            placeholder="Password"
-            name="password"
-            type="password"
-            required
-          />
+        <input
+          placeholder="Password"
+          name="password"
+          type="password"
+          required
+          autoComplete="off"
+        />
+        {errorMessage && (
+          <span className={style.loginErrorMessage}>
+            Credenciales incorrectas
+          </span>
         )}
         <button>Enviar</button>
       </form>
+      <br />
+      <Link className={style.loginLink} href="/register">
+        Crear una cuenta
+      </Link>
     </section>
   );
 }
