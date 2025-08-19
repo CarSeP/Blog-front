@@ -20,7 +20,7 @@ model Post {
   slug        String   @unique
   description String
   categories  String[]
-  img         String
+  img         String?
   author      User     @relation(fields: [authorId], references: [id])
   authorId    Int
   createdAt   DateTime @default(now())
@@ -32,8 +32,8 @@ model User {
   name        String
   username    String       @unique
   categories  String[]
-  img         String
-  description String
+  img         String?
+  description String?
   posts       Post[]
   account     UserAccount?
   createdAt   DateTime     @default(now())
