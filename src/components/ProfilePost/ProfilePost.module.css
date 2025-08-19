@@ -6,9 +6,13 @@
   border: 1px solid #d9d9d9;
 }
 
-.postImg {
+.postImgHeader {
   width: 100%;
   height: 300px;
+  overflow: hidden;
+}
+.postImg {
+  width: 100%;
 }
 
 .postBody {

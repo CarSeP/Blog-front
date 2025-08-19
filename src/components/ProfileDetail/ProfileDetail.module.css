@@ -17,10 +17,15 @@
   background-color: white;
 }
 
-.profileImg {
+.profileImgContainer {
+  border-radius: 100%;
   height: 250px;
   width: 250px;
-  border-radius: 100%;
+  overflow: hidden;
+}
+
+.profileImg {
+  width: 250px;
 }
 
 .profileCard h2 {

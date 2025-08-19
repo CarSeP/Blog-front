@@ -11,7 +11,7 @@ function ProfileDetail({ user }: Props) {
   return (
     <section className={style.profile}>
       <header className={style.profileHeader}>
-        <picture>
+        <picture className={style.profileImgContainer}>
           <img className={style.profileImg} src={user.img} />
         </picture>
         <div>

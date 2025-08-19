@@ -12,7 +12,7 @@ function ProfilePost({ post }: Props) {
   return (
     <article className={style.postCard}>
       <Link href={"/post/" + post.slug}>
-        <header>
+        <header className={style.postImgHeader}>
           <img className={style.postImg} src={post.img} />
         </header>
         <div className={style.postBody}>
