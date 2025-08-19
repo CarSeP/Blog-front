@@ -13,7 +13,7 @@ export function PostCard({ post }: Props) {
   return (
     <article className={style.postCard}>
       <header className={style.postHeader}>
-        <Link href={"post/" + post.slug} className={style.postAuthorImgContainer}>
+        <Link href={"post/" + post.slug} className={style.postImgContainer}>
           <Image className={style.postImg} src={post.img} />
         </Link>
       </header>
