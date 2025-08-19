@@ -1,6 +1,6 @@
 import { Post } from "@/interfaces/post.interface";
 import style from "./ProfilePost.module.css";
-import PostCategories from "../PostCategories/PostCategories";
+import Categories from "../Categories/Categories";
 import { formatDate } from "@/services/date";
 import Link from "next/link";
 
@@ -18,7 +18,7 @@ function ProfilePost({ post }: Props) {
         <div className={style.postBody}>
           <div className={style.postInfoContainer}>
             <div>
-              <PostCategories categories={post.categories} />
+              <Categories categories={post.categories} />
             </div>
             <h3>{formatDate(post.createdAt)}</h3>
           </div>

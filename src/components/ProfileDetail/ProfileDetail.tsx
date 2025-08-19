@@ -1,6 +1,6 @@
 import { User } from "@/interfaces/user.interface";
 import style from "./ProfileDetail.module.css";
-import PostCategories from "../PostCategories/PostCategories";
+import Categories from "../Categories/Categories";
 import ProfilePost from "../ProfilePost/ProfilePost";
 
 interface Props {
@@ -17,7 +17,7 @@ function ProfileDetail({ user }: Props) {
         <div>
           <h2>{user.name}</h2>
           <p>{user.description}</p>
-          <PostCategories categories={user.categories} />
+          <Categories categories={user.categories} />
         </div>
       </header>
       {user.posts &&
