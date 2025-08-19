@@ -7,14 +7,23 @@
   overflow: hidden;
 }
 
-.postImg {
-  width: 100%;
-  height: 100%;
+.postAuthorImgContainer {
   border-bottom: 1px solid #e3e3e3;
 }
 
-.postHeader {
+.postImg {
+  width: 100%;
+  min-height: 220px;
+}
+
+.postImgContainer {
+  width: 100%;
   height: 220px;
+  overflow: hidden;
+  display: block;
+}
+
+.postHeader {
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
 }
