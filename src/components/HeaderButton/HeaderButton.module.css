@@ -11,3 +11,9 @@
     background-color: #4c4c4c;
   }
 }
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

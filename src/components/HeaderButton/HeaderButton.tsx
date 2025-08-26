@@ -11,13 +11,18 @@ function HeaderButton({ isAuth }: Props) {
     <div>
       {!isAuth && (
         <Link href="/login">
-          <button className={style.loginButton}>Login</button>
+          <button className={style.loginButton}>Iniciar Sesión</button>
         </Link>
       )}
       {isAuth && (
-        <Link href={`/profile/${isAuth}`}>
-          <ProfileButton />
-        </Link>
+        <div className={style.buttonContainer}>
+          <Link href={`/profile/${isAuth}`}>
+            <ProfileButton />
+          </Link>
+          <Link href="/api/auth/logout">
+            <button className={style.loginButton}>Cerrar Sesión</button>
+          </Link>
+        </div>
       )}
     </div>
   );
