@@ -2,11 +2,13 @@
   width: 100%;
   justify-content: center;
   display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 40px;
 }
 
 .PostGrid {
   max-width: 1000px;
-  padding: 20px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 40px;
