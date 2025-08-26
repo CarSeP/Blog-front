@@ -19,6 +19,9 @@ export async function POST(req: Request) {
       where: {
         email: email.toUpperCase().trim(),
       },
+      include: {
+        user: true
+      }
     });
 
     if (!account) {
@@ -38,11 +41,11 @@ export async function POST(req: Request) {
     }
 
     const cookieStore = await cookies();
-    const token = jwt.sign({ id: account.id }, process.env.JWT_SECRET || "");
+    const token = jwt.sign({ id: account.user.username }, process.env.JWT_SECRET || "");
     cookieStore.set({
       name: "authToken",
       value: token,
-      httpOnly: true,
+      httpOnly: false,
       path: "/",
       expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
     });
