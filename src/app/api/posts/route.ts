@@ -6,6 +6,7 @@ export async function GET(req: NextRequest) {
   const page = Number(req.nextUrl.searchParams.get("page"));
 
   const error = [];
+  let whereCondition = {};
 
   if (!pageSize) {
     error.push("PageSize is required");
@@ -27,6 +28,16 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ message: error }, { status: 400 });
   }
 
+  const title = req.nextUrl.searchParams.get("title");
+
+  if (title) {
+    whereCondition = {
+      title: {
+        contains: title,
+      },
+    };
+  }
+
   const [paginatedResults, totalCount] = await prisma.$transaction([
     prisma.post.findMany({
       skip: (page - 1) * pageSize,
@@ -34,8 +45,9 @@ export async function GET(req: NextRequest) {
       include: {
         author: true,
       },
+      where: whereCondition,
     }),
-    prisma.post.count({}),
+    prisma.post.count({ where: whereCondition }),
   ]);
 
   return NextResponse.json({
