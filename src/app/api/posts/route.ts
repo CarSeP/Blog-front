@@ -59,3 +59,46 @@ export async function GET(req: NextRequest) {
     posts: paginatedResults,
   });
 }
+
+export async function POST(req: NextRequest) {
+  const data = await req.json();
+  const { title, description, authorUsername } = data;
+
+  const errors = [];
+  if (!title) errors.push("Title is required");
+  if (!description) errors.push("Description is required");
+  if (!authorUsername) errors.push("AuthorUsername is required");
+
+  if (errors.length) {
+    return NextResponse.json({ message: errors }, { status: 400 });
+  }
+
+  const user = await prisma.user.findUnique({
+    where: {
+      username: authorUsername,
+    },
+  });
+
+  const slug = title.toLowerCase().split(" ").join("-");
+
+  if(!user){
+    return NextResponse.json({ message: "Author not found" }, { status: 404 });
+  }
+
+  try {
+    const post = await prisma.post.create({
+      data: {
+        slug,
+        title,
+        description,
+        authorId: user.id,
+      },
+    });
+    return NextResponse.json(post, { status: 201 });
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Error creating post" },
+      { status: 500 }
+    );
+  }
+}
