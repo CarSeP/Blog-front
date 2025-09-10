@@ -2,6 +2,7 @@ import { User } from "@/interfaces/user.interface";
 import style from "./ProfileDetail.module.css";
 import Categories from "../Categories/Categories";
 import ProfilePost from "../ProfilePost/ProfilePost";
+import Link from "next/link";
 
 interface Props {
   user: User;
@@ -18,6 +19,11 @@ function ProfileDetail({ user }: Props) {
           <h2>{user.name}</h2>
           <p>{user.description}</p>
           <Categories categories={user.categories} />
+          <div>
+            <Link href="/post/create">
+              <button className={style.button}>Crear nuevo post</button>
+            </Link>
+          </div>
         </div>
       </header>
       {user.posts &&
