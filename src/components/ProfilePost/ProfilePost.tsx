@@ -3,6 +3,7 @@ import style from "./ProfilePost.module.css";
 import Categories from "../Categories/Categories";
 import { formatDate } from "@/services/date";
 import Link from "next/link";
+import ProfilePostActionButton from "../ProfilePostActionButton/ProfilePostActionButton";
 
 interface Props {
   post: Post;
@@ -24,6 +25,7 @@ function ProfilePost({ post }: Props) {
           </div>
           <h2>{post.title}</h2>
           <p>{post.description}</p>
+          <ProfilePostActionButton slug={post.slug} />
         </div>
       </Link>
     </article>
