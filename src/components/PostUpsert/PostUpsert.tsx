@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import style from "./PostUpsert.module.css";
 import { useRouter } from "next/navigation";
 
@@ -57,6 +58,29 @@ function PostUpsert({ authorUsername, mode, slug }: Props) {
       router.back();
     }
   };
+
+  const getPost = async () => {
+    const response = await fetch("/api/posts/" + slug);
+
+    const post = await response.json();
+    if (response.status == 200) {
+      const titleInput = document.querySelector('textarea[name="title"]');
+      const descriptionInput = document.querySelector(
+        'textarea[name="description"]'
+      );
+
+      if (titleInput && descriptionInput) {
+        titleInput.textContent = post.title;
+        descriptionInput.textContent = post.description;
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (mode === "update" && slug) {
+      getPost();
+    }
+  }, []);
 
   return (
     <form onSubmit={onSubmit} className={style.section}>
