@@ -45,3 +45,36 @@ export async function DELETE(req: Request) {
     );
   }
 }
+
+export async function PUT(req: Request, { params }: ParamsType) {
+  const slug = params.slug;
+  const data = await req.json();
+  const { title, description } = data;
+
+  const post = await prisma.post.findUnique({ where: { slug } });
+  if (!post) {
+    return NextResponse.json({ message: "Post not found" }, { status: 404 });
+  }
+
+  let newSlug = slug;
+  if (title) {
+    newSlug = title.toLowerCase().split(" ").join("-");
+  }
+
+  try {
+    const updatedPost = await prisma.post.update({
+      where: { slug },
+      data: {
+        title: title ?? post.title,
+        description: description ?? post.description,
+        slug: newSlug,
+      },
+    });
+    return NextResponse.json(updatedPost, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Error updating the post" },
+      { status: 500 }
+    );
+  }
+}
