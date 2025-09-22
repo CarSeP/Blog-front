@@ -12,8 +12,7 @@ async function CreatePostPage() {
     }
   });
 
-
-  return <PostUpsert authorUsername={username}/>;
+  return <PostUpsert mode="create" authorUsername={username}/>;
 }
 
 export default CreatePostPage;
