@@ -1,7 +1,8 @@
 import "./index.css";
+import HomePage from "./pages/Home";
 
 export function App() {
-  return <div className="app">Hello world</div>;
+  return <HomePage />;
 }
 
 export default App;
