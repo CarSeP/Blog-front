@@ -1,10 +1,13 @@
+import HomePostGrid from "@/components/home/HomePostGrid/HomePostGrid";
 import Header from "@/components/layout/header/Header";
 
 function HomePage() {
   return (
     <div>
       <Header />
-      <main></main>
+      <main>
+        <HomePostGrid />
+      </main>
     </div>
   );
 }
