@@ -1,0 +1,14 @@
+.postSection {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+
+  .post {
+    max-width: 1080px;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #d9d9d9;
+  }
+}

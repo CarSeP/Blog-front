@@ -1,0 +1,31 @@
+.contentContainer {
+  padding: 16px;
+
+  .title {
+    font-weight: bold;
+    font-size: 26px;
+  }
+
+  .infoContainer {
+    display: flex;
+    justify-content: space-between;
+
+    .categoryContainer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .authorData {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .authorPhoto {
+      width: 32px;
+      height: 32px;
+      border-radius: 100%;
+    }
+  }
+}

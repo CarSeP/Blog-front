@@ -11,13 +11,13 @@ function HomePostCard({ post }: Props) {
   return (
     <article className="postCard">
       <div className="postHeader">
-        <img src={post.img} alt="" />
+        <img src={post.img} alt={post.title} />
       </div>
       <div className="postContent">
         {post.categories.length && (
           <div className="categoryContainer">
             {post.categories.map((category) => (
-              <Badge title={category} />
+              <Badge title={category} key={category} />
             ))}
           </div>
         )}
@@ -26,7 +26,7 @@ function HomePostCard({ post }: Props) {
         <div className="line"></div>
         <div className="postAuthor">
           <picture className="authorPhoto">
-            <img src={post.author.img} alt="" />
+            <img src={post.author.img} alt={post.author.name} />
           </picture>
           <div className="authorData">
             <span className="authorName">{post.author.name}</span>

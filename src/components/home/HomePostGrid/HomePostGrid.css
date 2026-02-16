@@ -8,4 +8,9 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
   }
+
+  .postCardContainer {
+    text-decoration: none;
+    color: black;
+  }
 }

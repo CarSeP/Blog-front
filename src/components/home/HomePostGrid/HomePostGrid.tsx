@@ -9,7 +9,16 @@ function HomePostGrid() {
   return (
     <section className="postContainer">
       <div className="grid">
-        {posts && posts.map((post: Post) => <HomePostCard post={post} />)}
+        {posts &&
+          posts.map((post: Post) => (
+            <a
+              href={`/post/${post.id}/${post.title}`}
+              className="postCardContainer"
+              key={post.id}
+            >
+              <HomePostCard post={post} />
+            </a>
+          ))}
       </div>
     </section>
   );
