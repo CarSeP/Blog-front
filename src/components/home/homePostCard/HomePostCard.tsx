@@ -24,15 +24,17 @@ function HomePostCard({ post }: Props) {
         <h2 className="title">{post.title}</h2>
         <p className="description">{post.description ?? ""}</p>
         <div className="line"></div>
-        <div className="postAuthor">
-          <picture className="authorPhoto">
-            <img src={post.author.img} alt={post.author.name} />
-          </picture>
-          <div className="authorData">
-            <span className="authorName">{post.author.name}</span>
-            <span>{formatDate(post.date)}</span>
+        <a href={`author/${post.author.id}/${post.author.name}`} className="postAuthorLink">
+          <div className="postAuthor">
+            <picture className="authorPhoto">
+              <img src={post.author.img} alt={post.author.name} />
+            </picture>
+            <div className="authorData">
+              <span className="authorName">{post.author.name}</span>
+              <span>{formatDate(post.date)}</span>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
     </article>
   );

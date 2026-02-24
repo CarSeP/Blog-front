@@ -28,4 +28,12 @@
       border-radius: 100%;
     }
   }
+
+  .authorInfo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: black;
+    text-decoration: none;
+  }
 }

@@ -1,7 +1,7 @@
 import { getManyPost } from "@/services/post";
 import type { Post } from "@/interfaces/post.interface";
 import "./HomePostGrid.css";
-import HomePostCard from "../HomePostCard/HomePostCard";
+import HomePostCard from "../homePostCard/HomePostCard";
 
 const posts = await getManyPost();
 

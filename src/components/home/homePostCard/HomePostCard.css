@@ -68,4 +68,9 @@
       }
     }
   }
+
+  .postAuthorLink {
+    text-decoration: none;
+    color: black;
+  }
 }

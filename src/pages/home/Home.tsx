@@ -1,4 +1,4 @@
-import HomePostGrid from "@/components/home/HomePostGrid/HomePostGrid";
+import HomePostGrid from "@/components/home/homePostGrid/HomePostGrid";
 
 function HomePage() {
   return (

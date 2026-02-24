@@ -63,5 +63,5 @@ export const getManyPost = async () => {
 };
 
 export const getUniquePost = async (id: Post["id"]) => {
-  return posts.find((post) => id === post.id);
+  return posts.find((post) => id === post.id) as Post;
 };

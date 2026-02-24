@@ -1,0 +1,10 @@
+.authorDataContainer {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+
+  .authorData {
+    width: 100%;
+    max-width: 1080px;
+  }
+}

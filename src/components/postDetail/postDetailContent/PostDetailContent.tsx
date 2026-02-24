@@ -17,12 +17,17 @@ function PostDetailContent({ post }: Props) {
               <Badge title={category} key={category} />
             ))}
           </div>
-          <img
-            src={post.author.img}
-            alt={post.author.name}
-            className="authorPhoto"
-          />
-          <span className="authorName">{post.author.name}</span>
+          <a
+            href={`/author/${post.author.id}/${post.author.name}`}
+            className="authorInfo"
+          >
+            <img
+              src={post.author.img}
+              alt={post.author.name}
+              className="authorPhoto"
+            />
+            <span className="authorName">{post.author.name}</span>
+          </a>
         </div>
         <div>
           <span>{formatDate(post.date)}</span>
