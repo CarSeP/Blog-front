@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Link, Route, Switch } from "wouter";
 import "./index.css";
 import Header from "./components/layout/header/Header";
 import HomePage from "./pages/home/Home";
@@ -10,14 +10,12 @@ export function App() {
   return (
     <div>
       <Header />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/post/:id/:slug" element={<PostDetailPage />} />
-          <Route path="/author/:id/:slug" element={<AuthorDetailPage />} />
-        </Routes>
-      </BrowserRouter>
+      <Switch>
+        <Route path="/" component={HomePage} />
+        <Route path="/login" component={Login} />
+        <Route path="/post/:id/:slug" component={PostDetailPage} />
+        <Route path="/author/:id/:slug" component={AuthorDetailPage} />
+      </Switch>
     </div>
   );
 }

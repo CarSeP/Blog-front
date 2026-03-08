@@ -1,51 +1,25 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import AuthorDetailHeader from "@/components/authorDetail/authorDetailHeader/AuthorDetailHeader";
-import AuthorDetailPost from "@/components/authorDetail/authorDetailPost/AuthorDetailPost";
-import { getUniqueAuthor } from "@/services/author";
 import "./AuthorDetail.css";
-import type { Author } from "@/interfaces/author.interface";
+import { useRoute } from "wouter";
+import { getUniqueAuthor } from "@/services/author";
+import AuthorDetailSection from "@/components/authorDetail/authorDetailSection/AuthorDetailSection";
+import { Suspense } from "react";
 
 function AuthorDetailPage() {
-  const { id } = useParams<{ id: string }>();
-  const [author, setAuthor] = useState<Author | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [match, params] = useRoute("/author/:id/:slug");
 
-  useEffect(() => {
-    const fetchAuthor = async () => {
-      setLoading(true);
-      try {
-        if (id) {
-          const fetchedAuthor = await getUniqueAuthor(Number(id));
-          setAuthor(fetchedAuthor || null);
-        } else {
-          setAuthor(null);
-        }
-      } catch (error) {
-        console.error("Error fetching author:", error);
-        setAuthor(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAuthor();
-  }, [id]);
-
-  if (loading) {
-    return <div className="loading">Cargando autor...</div>;
+  if (!match) {
+    return;
   }
 
-  if (!author) {
-    return <div className="error">Autor no encontrado.</div>;
-  }
-
+  const id = params.id;
+  const promise = getUniqueAuthor(Number(id));
   return (
     <main className="authorDataContainer">
-      <div className="authorData">
-        <AuthorDetailHeader author={author} />
-        <AuthorDetailPost posts={author.posts} />
-      </div>
+      <Suspense fallback={<div>Cargando ...</div>}>
+        <div className="authorData">
+          <AuthorDetailSection promise={promise} />
+        </div>
+      </Suspense>
     </main>
   );
 }

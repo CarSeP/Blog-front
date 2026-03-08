@@ -1,45 +1,25 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import PostDetailHeader from "@/components/postDetail/postDetailHeader/PostDetailHeader";
 import { getUniquePost } from "@/services/post";
-import PostDetailContent from "@/components/postDetail/postDetailContent/PostDetailContent";
 import "./postDetail.css";
-import type { Post } from "@/interfaces/post.interface";
+import PostDetailSection from "@/components/postDetail/postDetailSection/PostDetailSection";
+import { Suspense } from "react";
+import { useRoute } from "wouter";
 
 function PostDetailPage() {
-  const { id } = useParams<{ id: string }>();
-  const [post, setPost] = useState<Post | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [match, params] = useRoute("post/:id/:slug");
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      setLoading(true);
-      if (id) {
-        const fetchedPost = await getUniquePost(Number(id));
-        setPost(fetchedPost || null);
-      } else {
-        setPost(null);
-      }
-      setLoading(false);
-    };
-
-    fetchPost();
-  }, [id]);
-
-  if (loading) {
-    return <div>Loading...</div>;
+  if (!match) {
+    return;
   }
 
-  if (!post) {
-    return <div>Post no encontrado.</div>;
-  }
-
+  const id = params.id;
+  const promise = getUniquePost(Number(id));
   return (
     <main className="postSection">
-      <div className="post">
-        <PostDetailHeader post={post} />
-        <PostDetailContent post={post} />
-      </div>
+      <Suspense fallback={<div>Cargando ...</div>}>
+        <div className="post">
+          <PostDetailSection promise={promise} />
+        </div>
+      </Suspense>
     </main>
   );
 }
