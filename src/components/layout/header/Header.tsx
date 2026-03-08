@@ -1,14 +1,20 @@
-import "./Header.css"
+import "./Header.css";
+import { Link, useLocation } from "wouter";
+
 function Header() {
+  const [location] = useLocation();
+
   return (
     <header className="header">
       <div className="container">
-        <a href="/" className="title">
+        <Link href="/" className="title">
           Blog
-        </a>
-        <a href="/login" className="loginButton">
-          Login
-        </a>
+        </Link>
+        {location !== "/login" && (
+          <Link href="/login" className="loginButton">
+            Login
+          </Link>
+        )}
       </div>
     </header>
   );

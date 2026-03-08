@@ -1,6 +1,16 @@
+import { useEffect } from "react";
 import "./Login.css";
 
 function LoginPage() {
+  const handleFetch = async () => {
+    const response = await fetch("/api/hello");
+    const data = await response.json();
+    console.log(data);
+  };
+  useEffect(() => {
+    handleFetch();
+  }, []);
+
   return (
     <main className="loginFormContainer">
       <form action="" className="loginForm">

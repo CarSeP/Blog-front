@@ -5,6 +5,9 @@ export interface Author {
   name: string;
   img: string;
   description: string;
+  username: string;
+  createdAt: string;
+  updatedAt: string;
   categories: string[];
   posts: Post[];
 }

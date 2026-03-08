@@ -1,18 +1,17 @@
 import "./AuthorDetail.css";
 import { useRoute } from "wouter";
-import { getUniqueAuthor } from "@/services/author";
 import AuthorDetailSection from "@/components/authorDetail/authorDetailSection/AuthorDetailSection";
-import { Suspense } from "react";
+import { Suspense, useMemo } from "react";
 
 function AuthorDetailPage() {
   const [match, params] = useRoute("/author/:id/:slug");
 
-  if (!match) {
-    return;
-  }
+  const promise = useMemo(() => {
+    if (!params?.id) return null;
+    return fetch(`/api/author/${Number(params.id)}`).then((res) => res.json());
+  }, [params?.id]);
 
-  const id = params.id;
-  const promise = getUniqueAuthor(Number(id));
+  if (!match || !promise) return null;
   return (
     <main className="authorDataContainer">
       <Suspense fallback={<div>Cargando ...</div>}>

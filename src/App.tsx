@@ -1,4 +1,4 @@
-import { Link, Route, Switch } from "wouter";
+import { Route, Switch } from "wouter";
 import "./index.css";
 import Header from "./components/layout/header/Header";
 import HomePage from "./pages/home/Home";

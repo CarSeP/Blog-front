@@ -1,4 +1,4 @@
-export const formatDate = (timestamp: number) => {
+export const formatDate = (timestamp: string) => {
   const date = new Date(timestamp);
 
   const formatter = new Intl.DateTimeFormat("es-ES", {

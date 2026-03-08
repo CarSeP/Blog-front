@@ -4,15 +4,15 @@ import PostDetailHeader from "../postDetailHeader/PostDetailHeader";
 import { use } from "react";
 
 interface Props {
-  promise: Promise<Post>;
+  promise: Promise<{ data: Post }>;
 }
 
 function PostDetailSection({ promise }: Props) {
   const post = use(promise);
   return (
     <>
-      <PostDetailHeader post={post} />
-      <PostDetailContent post={post} />
+      <PostDetailHeader post={post.data} />
+      <PostDetailContent post={post.data} />
     </>
   );
 }

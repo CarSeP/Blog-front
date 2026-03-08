@@ -6,6 +6,8 @@ export interface Post {
   title: string;
   description: string;
   categories: string[];
-  date: number;
+  createdAt: string;
+  updatedAt: string;
+  slug: string;
   author: Author;
 }

@@ -31,7 +31,7 @@ function HomePostCard({ post }: Props) {
             </picture>
             <div className="authorData">
               <span className="authorName">{post.author.name}</span>
-              <span>{formatDate(post.date)}</span>
+              <span>{formatDate(post.createdAt)}</span>
             </div>
           </div>
         </a>

@@ -1,18 +1,18 @@
-import { getUniquePost } from "@/services/post";
 import "./postDetail.css";
 import PostDetailSection from "@/components/postDetail/postDetailSection/PostDetailSection";
-import { Suspense } from "react";
+import { Suspense, useMemo } from "react";
 import { useRoute } from "wouter";
 
 function PostDetailPage() {
   const [match, params] = useRoute("post/:id/:slug");
 
-  if (!match) {
-    return;
-  }
+  const promise = useMemo(() => {
+    if (!params?.id) return null;
+    return fetch(`/api/posts/${Number(params.id)}`).then((res) => res.json());
+  }, [params?.id]);
 
-  const id = params.id;
-  const promise = getUniquePost(Number(id));
+  if (!match || !promise) return null;
+
   return (
     <main className="postSection">
       <Suspense fallback={<div>Cargando ...</div>}>
