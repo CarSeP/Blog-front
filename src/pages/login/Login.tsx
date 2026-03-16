@@ -3,7 +3,7 @@ import "./Login.css";
 
 function LoginPage() {
   const handleFetch = async () => {
-    const response = await fetch("/api/hello");
+    const response = await fetch("/api/posts");
     const data = await response.json();
     console.log(data);
   };

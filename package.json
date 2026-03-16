@@ -17,7 +17,8 @@
     "prisma": "^7.4.2",
     "react": "^19",
     "react-dom": "^19",
-    "wouter": "^3.9.0"
+    "wouter": "^3.9.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/react": "^19",
