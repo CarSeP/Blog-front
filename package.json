@@ -11,8 +11,10 @@
   "dependencies": {
     "@prisma/adapter-pg": "^7.4.2",
     "@prisma/client": "^7.4.2",
-    "@types/pg": "^8.18.0",
+    "bcrypt": "^6.0.0",
     "dotenv": "^17.3.1",
+    "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.3",
     "pg": "^8.20.0",
     "prisma": "^7.4.2",
     "react": "^19",
@@ -23,6 +25,10 @@
   "devDependencies": {
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@types/bun": "latest"
+    "@types/bcrypt": "^6.0.0",
+    "@types/bun": "latest",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/js-cookie": "^3.0.6",
+    "@types/pg": "^8.18.0"
   }
 }

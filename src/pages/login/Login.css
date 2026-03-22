@@ -18,6 +18,12 @@
   align-items: center;
   padding: 16px 64px;
   gap: 16px;
+
+  .error {
+    color: red;
+    font-size: 10px;
+    min-height: 14px;
+  }
 }
 
 .loginForm div {

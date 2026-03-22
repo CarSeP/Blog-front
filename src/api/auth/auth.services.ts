@@ -1,13 +1,17 @@
 import type { Account } from "@/interfaces/account.interface";
 import type { Author } from "@/interfaces/author.interface";
+import { loginSchema } from "@/schemes/login.schema";
 import { registerSchema } from "@/schemes/register.schema";
 import { prisma } from "@/services/prisma";
+import bcrypt from "bcrypt";
+import type { ZodObject } from "zod";
+import jwt from "jsonwebtoken";
 
 export const createUser = async (user: Author & Account) => {
   try {
     const errors: string[] = [];
 
-    const schemaErrors = validateUser(user);
+    const schemaErrors = validateUser(user, registerSchema);
     if (schemaErrors) {
       return { errors: schemaErrors, user: null };
     }
@@ -23,16 +27,17 @@ export const createUser = async (user: Author & Account) => {
     if (errors.length) {
       return { errors, user: null };
     }
+    const hash = await bcrypt.hash(user.password, 10);
 
     const userCreated = await prisma.user.create({
       data: {
-        name: user.name,
-        username: user.username,
+        name: user.name.trim(),
+        username: user.username.toLowerCase().trim(),
         account: {
           create: {
-            email: user.email,
+            email: user.email.toLowerCase(),
             role: "USER",
-            password: user.password,
+            password: hash,
           },
         },
       },
@@ -62,8 +67,8 @@ const findUserByEmail = async (email: string) => {
   return true;
 };
 
-const validateUser = (user: Author & Account) => {
-  const isValid = registerSchema.safeParse(user);
+const validateUser = (user: Author & Account, schema: ZodObject) => {
+  const isValid = schema.safeParse(user);
   if (!isValid.success) {
     const fieldErrors = isValid.error.flatten().fieldErrors;
     const errors = Object.entries(fieldErrors).map(([field, messages]) => {
@@ -74,4 +79,30 @@ const validateUser = (user: Author & Account) => {
   }
 
   return false;
+};
+
+export const loginUser = async (user: Author & Account) => {
+  const schemaErrors = validateUser(user, loginSchema);
+
+  if (schemaErrors) {
+    return { errors: schemaErrors, token: null, status: 409 };
+  }
+
+  const { email, password } = user;
+
+  const account = await prisma.userAccount.findUnique({ where: { email } });
+
+  if (!account) {
+    return { errors: ["Invalid credentials"], token: null, status: 401 };
+  }
+
+  const hash = await bcrypt.compare(password, account.password);
+
+  if (!hash) {
+    return { errors: ["Invalid credentials"], token: null, status: 401 };
+  }
+
+  const token = jwt.sign({ email }, process.env.JWT_SECRET ?? "");
+
+  return { errors: null, token, status: 200 };
 };
