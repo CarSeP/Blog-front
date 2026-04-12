@@ -12,9 +12,9 @@ function Header() {
           Blog
         </Link>
         {token && (
-          <Link href="/api/auth/logout" className="loginButton">
+          <a href="/api/auth/logout" className="loginButton">
             Logout
-          </Link>
+          </a>
         )}
         {location !== "/login" && !token && (
           <Link href="/login" className="loginButton">
