@@ -7,5 +7,8 @@ export const authorRouter = {
       const id = Number(req.params.id);
       return await authorController.getOne(id);
     },
+    async PATCH(req: BunRequest) {
+      return await authorController.update(req);
+    },
   },
 };

@@ -20,6 +20,25 @@
       width: 300px;
       height: 300px;
       border-radius: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .authorInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+
+    h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    p {
+      margin: 0;
+      color: #666;
+      line-height: 1.5;
     }
   }
 
@@ -27,5 +46,137 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+
+  .editCategories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .categoryTag {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    button.removeCategory {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: none;
+      border: none;
+      color: #333;
+      cursor: pointer;
+      font-size: 12px;
+      padding: 0;
+      line-height: 1;
+      font-weight: bold;
+
+      &:hover {
+        color: #ff4d4f;
+      }
+    }
+  }
+
+  .addCategoryContainer {
+    display: flex;
+    align-items: center;
+  }
+
+  .addCategoryInputWrapper {
+    display: flex;
+    align-items: center;
+    background-color: #d1fae5;
+    border-radius: 8px;
+    padding: 2px 8px;
+  }
+
+  .addCategoryInput {
+    width: 60px !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 4px !important;
+    font-size: 10px !important;
+    color: #065f46 !important;
+    outline: none;
+
+    &::placeholder {
+      color: #065f4680;
+    }
+  }
+
+  .confirmAddCategory,
+  .showAddCategory {
+    background: transparent;
+    border: none;
+    color: #065f46;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+
+  .showAddCategory {
+    background-color: #d1fae5;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 14px;
+
+    &:hover {
+      background-color: #a7f3d0;
+    }
+  }
+
+  .authorActions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    width: 100%;
+  }
+
+  .actionButton {
+    background-color: #d9d9d9;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    width: fit-content;
+
+    &:hover {
+      background-color: #c0c0c0;
+    }
+
+    &.secondary {
+      background-color: transparent;
+      border: 1px solid #d9d9d9;
+    }
+  }
+
+  .editInput {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    font-family: inherit;
+  }
+
+  .nameInput {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .descriptionInput {
+    min-height: 80px;
+    resize: vertical;
   }
 }

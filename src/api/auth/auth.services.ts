@@ -90,7 +90,17 @@ export const loginUser = async (user: Author & Account) => {
 
   const { email, password } = user;
 
-  const account = await prisma.userAccount.findUnique({ where: { email } });
+  const account = await prisma.userAccount.findUnique({
+    where: { email },
+    include: {
+      user: {
+        select: {
+          id: true,
+          username: true,
+        },
+      },
+    },
+  });
 
   if (!account) {
     return { errors: ["Invalid credentials"], token: null, status: 401 };
@@ -102,7 +112,11 @@ export const loginUser = async (user: Author & Account) => {
     return { errors: ["Invalid credentials"], token: null, status: 401 };
   }
 
-  const token = jwt.sign({ email }, process.env.JWT_SECRET ?? "");
+  const token = jwt.sign(
+    { email, id: account.user.id, slug: account.user.username },
+    process.env.JWT_SECRET ?? "",
+  );
 
   return { errors: null, token, status: 200 };
 };
+
