@@ -51,21 +51,6 @@ function AuthorDetailHeader({ author: initialAuthor }: Props) {
     setIsEditing(false);
   };
 
-  const removeCategory = (index: number) => {
-    const updated = editData.categories.filter((_, i) => i !== index);
-    setEditData({ ...editData, categories: updated });
-  };
-
-  const addCategory = () => {
-    if (newCategory.trim() && !editData.categories.includes(newCategory.trim())) {
-      setEditData({
-        ...editData,
-        categories: [...editData.categories, newCategory.trim()],
-      });
-      setNewCategory("");
-    }
-  };
-
   return (
     <header className="authorHeader">
       <div className="authorPhoto">
@@ -96,70 +81,6 @@ function AuthorDetailHeader({ author: initialAuthor }: Props) {
         ) : (
           <p>{author.description}</p>
         )}
-
-        <div className="categoryContainer">
-          {isEditing ? (
-            <div className="editCategories">
-              {editData.categories.map((category, index) => (
-                <div key={index} className="categoryTag">
-                  <Badge title={category} />
-                  <button
-                    type="button"
-                    className="removeCategory"
-                    onClick={() => removeCategory(index)}
-                  >
-                    &times;
-                  </button>
-                </div>
-              ))}
-              <div className="addCategoryContainer">
-                {newCategory !== null ? (
-                  <div className="addCategoryInputWrapper">
-                    <input
-                      type="text"
-                      className="editInput addCategoryInput"
-                      autoFocus
-                      placeholder="..."
-                      value={newCategory}
-                      onChange={(e) => setNewCategory(e.target.value)}
-                      onBlur={() => {
-                        if (!newCategory.trim()) setNewCategory("");
-                      }}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                          e.preventDefault();
-                          addCategory();
-                        }
-                        if (e.key === "Escape") {
-                          setNewCategory("");
-                        }
-                      }}
-                    />
-                    <button
-                      type="button"
-                      className="confirmAddCategory"
-                      onClick={addCategory}
-                    >
-                      +
-                    </button>
-                  </div>
-                ) : (
-                  <button
-                    type="button"
-                    className="showAddCategory"
-                    onClick={() => setNewCategory("")}
-                  >
-                    +
-                  </button>
-                )}
-              </div>
-            </div>
-          ) : (
-            author.categories.map((category) => (
-              <Badge title={category} key={category} />
-            ))
-          )}
-        </div>
 
         {isOwnProfile && (
           <div className="authorActions">
