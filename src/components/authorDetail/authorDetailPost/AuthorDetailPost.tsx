@@ -15,30 +15,31 @@ function AuthorDetailPost({ posts }: Props) {
 
   return (
     <section className="authorPostContainer">
-      {posts.map((post) => (
-        <article className="post">
-          <Link
-            href={`../../post/${post.id}/${post.slug}`}
-            className="authorPostLink"
-          >
-            <header className="postHeader">
-              <img src={post.img} alt={post.title} />
-            </header>
-            <div className="authorPostData">
-              <div className="authorPostInfo">
-                <div className="categoryContainer">
-                  {post.categories.map((category) => (
-                    <Badge title={category} key={category} />
-                  ))}
+      {posts.length &&
+        posts.map((post) => (
+          <article className="post">
+            <Link
+              href={`../../post/${post.id}/${post.slug}`}
+              className="authorPostLink"
+            >
+              <header className="postHeader">
+                <img src={post.img} alt={post.title} />
+              </header>
+              <div className="authorPostData">
+                <div className="authorPostInfo">
+                  <div className="categoryContainer">
+                    {post.categories.map((category) => (
+                      <Badge title={category} key={category} />
+                    ))}
+                  </div>
+                  <span>{formatDate(post.createdAt)}</span>
                 </div>
-                <span>{formatDate(post.createdAt)}</span>
+                <h2>{post.title}</h2>
+                <p>{post.description}</p>
               </div>
-              <h2>{post.title}</h2>
-              <p>{post.description}</p>
-            </div>
-          </Link>
-        </article>
-      ))}
+            </Link>
+          </article>
+        ))}
     </section>
   );
 }
